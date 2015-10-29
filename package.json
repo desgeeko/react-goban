@@ -1,7 +1,7 @@
 {
   "name": "react-goban",
-  "version": "0.1.0",
-  "description": "React component displaying a Goban",
+  "version": "0.1.1",
+  "description": "A stateless React component displaying a Goban",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
