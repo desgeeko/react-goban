@@ -2,7 +2,7 @@
 
 *A stateless React component displaying a Goban.*
 
-The concern is the View: it implements neither Go rules nor game state.
+Its concern is the View: it implements neither Go rules nor game state.
 
 ![SVGoban demo](demo/demo.png)
 
