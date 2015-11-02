@@ -22,5 +22,5 @@ clean:
 	rm $(DEMO_DIR)/demo-bundle.js
 	rm $(LIB_DIR)/react-goban.js
 
-.PHONY: clean demo
+.PHONY: clean 
 

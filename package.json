@@ -27,7 +27,7 @@
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "svgoban": "^0.1.0"
+    "svgoban": "^0.2.0"
   },
   "devDependencies": {
     "babel": "^5.8.29",
