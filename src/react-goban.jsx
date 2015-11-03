@@ -5,7 +5,6 @@
  */
 
 /** @todo Split into multiple files (one per class)? */
-/** @todo Add Pure Render Mixin or shouldComponentUpdate tests in order to minimize redraws */
 
 
 var React = require('react');
@@ -41,6 +40,9 @@ function toElem(shapes, callback) {
 }
 
 var LabelsLayer = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+	return (nextProps.size !== this.props.size);
+    },
     render: function() {
 	var pseudoLabels = SVGoban.shapeLabels(this.props.size);
 	return (
@@ -50,6 +52,9 @@ var LabelsLayer = React.createClass({
 });
 
 var GridLayer = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+	return (nextProps.size !== this.props.size);
+    },
     render: function() {
 	var pseudoLines = SVGoban.shapeGrid(this.props.size);
 	return (
@@ -59,6 +64,9 @@ var GridLayer = React.createClass({
 });
 
 var StarPointsLayer = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+	return (nextProps.size !== this.props.size);
+    },
     render: function() {
 	var pseudoStarPoints = SVGoban.shapeStarPoints(this.props.size);
 	return (
@@ -80,6 +88,9 @@ var StonesLayer = React.createClass({
 });
 
 var Style = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+	return (nextProps.theme !== this.props.theme);
+    },
     render: function() {
 	return (
 		<style>{SVGoban.Themes[this.props.theme]()}</style>
