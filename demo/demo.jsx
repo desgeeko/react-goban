@@ -7,7 +7,11 @@ var DemoApp = React.createClass({
     getInitialState: function() {
 	var sample1 = {"P16":"black"};
 	var theme = "classic";
-	return {position:sample1, theme:theme};
+	var intersection = "none yet";
+	return {position:sample1, theme:theme, intersection:intersection};
+    },
+    handleIntersectionClick: function(intersection) {
+	this.setState({intersection:intersection});
     },
     handleClickClassic: function(event) {
 	var theme = "classic";
@@ -37,6 +41,8 @@ var DemoApp = React.createClass({
 	return (
 		<div>
 		  <div id="menu">
+		    <p>Last click received from callback: <strong>{this.state.intersection}</strong></p>
+		    <p>Modify properties of stateless Goban:</p>
 		    <button onClick={this.handleClickClassic}>classic</button>
 		    <button onClick={this.handleClickPaper}>paper</button>
 		    <button onClick={this.handleClick1}>1 stone</button>
@@ -44,7 +50,7 @@ var DemoApp = React.createClass({
 		    <button onClick={this.handleClick3}>3 stones</button>
 		    <button onClick={this.handleClick4}>4 stones</button>
 		  </div>
-		  <Goban size="19" theme={this.state.theme} stones={this.state.position}/>
+		  <Goban size="19" theme={this.state.theme} stones={this.state.position} onIntersectionClick={this.handleIntersectionClick}/>
 		</div>
 	);
     }

@@ -18,7 +18,7 @@ var SVGoban = require('svgoban');
  * @param {Array} shape list
  * @returns {Array} React element list
  */
-function toElem(shapes) {
+function toElem(shapes, callback) {
     var typeofShape;
     var txt = null;
     var k = 0;
@@ -33,7 +33,8 @@ function toElem(shapes) {
 	    delete shapes[i].class;
 	}
 	delete shapes[i].type;
-	shapes[i].key = k++;
+	shapes[i].key = shapes[i].key || k++;
+	if (callback) shapes[i].onClick=callback.bind(null, shapes[i].key); // Replace this by null for React
 	shapes[i] = React.createElement(typeofShape, shapes[i], txt);
     }
     return shapes;
@@ -64,9 +65,12 @@ var StarPointsLayer = React.createClass({
 });
 
 var StonesLayer = React.createClass({
+    handleClick: function(intersection) {
+	this.props.onIntersectionClick(intersection);
+    },
     render: function() {
 	return (
-		<g className="stones_layer">{toElem(SVGoban.shapeStones(this.props.size, this.props.set))}</g>
+		<g className="stones_layer">{toElem(SVGoban.shapeStones(this.props.size, this.props.set), this.handleClick)}</g>
 	);
     }
 });
@@ -115,7 +119,7 @@ var Goban = React.createClass({
 		    <GridLayer size={this.props.size}/>
 		    <StarPointsLayer size={this.props.size}/>
 		    <LabelsLayer size={this.props.size}/>
-		    <StonesLayer size={this.props.size} set={this.props.stones}/>
+		    <StonesLayer size={this.props.size} set={this.props.stones} onIntersectionClick={this.props.onIntersectionClick}/>
 		  </svg>
 		</div>
 	);
