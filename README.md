@@ -9,12 +9,13 @@ Its concern is the View: it implements neither Go rules nor game state.
 ## Usage
 
 Install the package: `npm install react-goban --save`
+
 Require it and use its `Goban` object:
 
 ```jsx
-<Goban  size="19" 
-	stones={{"P16":"black","Q4":"white","D4":"black","E16":"white"}} 
-	onIntersectionClick={handler}
+<Goban size="19" 
+       stones={{"P16":"black","Q4":"white","D4":"black","E16":"white"}} 
+       onIntersectionClick={handler}
 />
 ```
 
@@ -23,6 +24,10 @@ Require it and use its `Goban` object:
 * `theme` = `"classic"` or `"paper"`
 * `stones` = an object containing coordinates and colors as keys and values 
 * `onIntersectionClick` = callback function from (statefull) parent Component 
+
+## Demo
+
+You may `make demo` and browse the bundled app at `demo\index.html`
 
 ## Roadmap
 
