@@ -12,10 +12,12 @@ Install the package: `npm install react-goban --save`
 Require it and use its `Goban` object:
 
 ```jsx
-<Goban size="19" stones={{"P16":"black","Q4":"white","D4":"black","E16":"white"}} onIntersectionClick={handler}/>
+<Goban  size="19" 
+	stones={{"P16":"black","Q4":"white","D4":"black","E16":"white"}} 
+	onIntersectionClick={handler}
+/>
 ```
 
-onIntersectionClick={this.handleIntersectionClick}
 ### Goban Attributes
 * `size` = a number between `9` and `19`
 * `theme` = `"classic"` or `"paper"`
