@@ -42,24 +42,27 @@ function toElem(shapes, callback) {
 
 var LabelsLayer = React.createClass({
     render: function() {
+	var pseudoLabels = SVGoban.shapeLabels(this.props.size);
 	return (
-		<g className="labels_layer">{toElem(SVGoban.shapeLabels(this.props.size))}</g>
+		<g className="labels_layer">{toElem(pseudoLabels)}</g>
 	);
     }
 });
 
 var GridLayer = React.createClass({
     render: function() {
+	var pseudoLines = SVGoban.shapeGrid(this.props.size);
 	return (
-		<g className="grid_layer">{toElem(SVGoban.shapeGrid(this.props.size))}</g>
+		<g className="grid_layer">{toElem(pseudoLines)}</g>
 	);
     }
 });
 
 var StarPointsLayer = React.createClass({
     render: function() {
+	var pseudoStarPoints = SVGoban.shapeStarPoints(this.props.size);
 	return (
-		<g className="starpoints_layer">{toElem(SVGoban.shapeStarPoints(this.props.size))}</g>
+		<g className="starpoints_layer">{toElem(pseudoStarPoints)}</g>
 	);
     }
 });
@@ -69,8 +72,9 @@ var StonesLayer = React.createClass({
 	this.props.onIntersectionClick(intersection);
     },
     render: function() {
+	var pseudoStones = SVGoban.shapeStones(this.props.size, this.props.set);
 	return (
-		<g className="stones_layer">{toElem(SVGoban.shapeStones(this.props.size, this.props.set), this.handleClick)}</g>
+		<g className="stones_layer">{toElem(pseudoStones, this.handleClick)}</g>
 	);
     }
 });
@@ -112,7 +116,7 @@ var Goban = React.createClass({
 	var viewBox = SVGoban.shapeArea().join(" ");
 	return (
 		<div className="svgoban">
-		  <svg id="goban" className="board black" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%"> 
+		  <svg className="board black" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%"> 
 		    <Style theme={this.props.theme}/>
 		    <Definitions/>
 		    <rect className="wood" height="100%" width="100%" y="0" x="0" />
