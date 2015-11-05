@@ -116,8 +116,9 @@ var CompositeStonesLayer = React.createClass({
 			   color={color} onIntersectionClick={this.handleClick} />);
 	    }
 	}
+	var cls = "stones_layer " + this.props.nextToPlay;
 	return (
-		<g className="stones_layer">{items}</g>
+		<g className={cls}>{items}</g>
 	);
     }
 });
@@ -173,11 +174,17 @@ var Definitions = React.createClass({
 /** @todo Add property to handle SVG className (next color to play) */
 
 var Goban = React.createClass({
+    getDefaultProps: function() {
+	return {
+	    size: "19",
+	    theme: "classic"
+	};
+    },
     render: function() {
 	var viewBox = SVGoban.shapeArea().join(" ");
 	return (
-		<div className="svgoban">
-		  <svg className="board black" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%"> 
+		<div className="react-goban">
+		  <svg className="svgoban" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%"> 
 		    <Style theme={this.props.theme}/>
 		    <Definitions/>
 		    <rect className="wood" height="100%" width="100%" y="0" x="0" />
@@ -185,7 +192,7 @@ var Goban = React.createClass({
 		    <StarPointsLayer size={this.props.size}/>
 		    <LabelsLayer size={this.props.size}/>
 		    <CompositeStonesLayer size={this.props.size} set={this.props.stones} 
-	    onIntersectionClick={this.props.onIntersectionClick}/>
+	               nextToPlay={this.props.nextToPlay} onIntersectionClick={this.props.onIntersectionClick}/>
 		  </svg>
 		</div>
 	);

@@ -8,7 +8,8 @@ var DemoApp = React.createClass({
 	var sample1 = {"P16":"black"};
 	var theme = "classic";
 	var intersection = "none yet";
-	return {position:sample1, theme:theme, intersection:intersection};
+	var nextToPlay = "black";
+	return {position:sample1, theme:theme, intersection:intersection, nextToPlay:nextToPlay};
     },
     handleIntersectionClick: function(intersection) {
 	this.setState({intersection:intersection});
@@ -37,6 +38,12 @@ var DemoApp = React.createClass({
 	var sample4 = {"P16":"black","Q4":"white","D4":"black","E16":"white"};
 	this.setState({position:sample4});
     },
+    handleClickB: function(event) {
+	this.setState({nextToPlay:"black"});
+    },
+    handleClickW: function(event) {
+	this.setState({nextToPlay:"white"});
+    },
     render: function() {
 	return (
 		<div>
@@ -49,8 +56,11 @@ var DemoApp = React.createClass({
 		    <button onClick={this.handleClick2}>2 stones</button>
 		    <button onClick={this.handleClick3}>3 stones</button>
 		    <button onClick={this.handleClick4}>4 stones</button>
+		    <button onClick={this.handleClickB}>nextToPlay: black</button>
+		    <button onClick={this.handleClickW}>nextToPlay: white</button>
 		  </div>
-		  <Goban size="19" theme={this.state.theme} stones={this.state.position} onIntersectionClick={this.handleIntersectionClick}/>
+		  <Goban theme={this.state.theme} stones={this.state.position} 
+	             nextToPlay={this.state.nextToPlay} onIntersectionClick={this.handleIntersectionClick}/>
 		</div>
 	);
     }

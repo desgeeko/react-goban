@@ -13,17 +13,17 @@ Install the package: `npm install react-goban --save`
 Require it and use its `Goban` object:
 
 ```jsx
-<Goban size="19" 
-       stones={{"P16":"black","Q4":"white","D4":"black","E16":"white"}} 
+<Goban stones={{"P16":"black","Q4":"white","D4":"black","E16":"white"}} 
        onIntersectionClick={handler}
 />
 ```
 
 ### Goban Attributes
-* `size` = a number between `9` and `19`
-* `theme` = `"classic"` or `"paper"`
-* `stones` = an object containing coordinates and colors as keys and values 
-* `onIntersectionClick` = callback function from (statefull) parent Component 
+* `size` = a number between `9` and `19` (default)
+* `theme` = `"classic"` (default) or `"paper"`
+* `stones` = an object containing coordinates and colors as keys and values
+* `onIntersectionClick` = callback function from (statefull) parent Component
+* `nextToPlay` = color of hover effet on placeholders
 
 ## Demo
 
@@ -32,7 +32,6 @@ You may `make demo` and browse the bundled app at `demo\index.html`
 ## Roadmap
 
 This is a Work In Progress.
-* Optimize rerendering
-* Zoom
+* Add zoom
 * Add markers (last stone played,...)
 
