@@ -33,5 +33,6 @@ You may `make demo` and browse the bundled app at `demo\index.html`
 
 This is a Work In Progress.
 * Optimize rerendering
+* Zoom
 * Add markers (last stone played,...)
 

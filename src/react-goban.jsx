@@ -75,7 +75,12 @@ var StarPointsLayer = React.createClass({
     }
 });
 
-var StonesLayer = React.createClass({
+
+/**
+ * 1st approach: bulk rendering of all stones/placeholders
+ *
+ */
+var FlatStonesLayer = React.createClass({
     handleClick: function(intersection) {
 	this.props.onIntersectionClick(intersection);
     },
@@ -83,6 +88,51 @@ var StonesLayer = React.createClass({
 	var pseudoStones = SVGoban.shapeStones(this.props.size, this.props.set);
 	return (
 		<g className="stones_layer">{toElem(pseudoStones, this.handleClick)}</g>
+	);
+    }
+});
+
+/**
+ * 2nd approach: stones/placeholders layer is a composite list of Stone components individually rendered
+ *
+ */
+var CompositeStonesLayer = React.createClass({
+    handleClick: function(intersection) {
+	this.props.onIntersectionClick(intersection);
+    },
+    render: function() {
+	var i, j, skipI, hletter, vnumber, coord, color;
+	var size = +this.props.size;
+	var items = [];
+
+	for (i = 1; i <= size; i++) {
+	    skipI = i >= 9 ? 1 : 0;
+	    hletter = String.fromCharCode(64 + i + skipI);
+	    for (j = 1; j <= size; j++) {
+		vnumber = j.toString();
+		coord = hletter + vnumber; 
+		color = this.props.set[coord] || "placeholder";
+		items.push(<Stone key={coord} size={this.props.size} intersection={coord} 
+			   color={color} onIntersectionClick={this.handleClick} />);
+	    }
+	}
+	return (
+		<g className="stones_layer">{items}</g>
+	);
+    }
+});
+
+var Stone = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+	var idem = (nextProps.size === this.props.size 
+		    && nextProps.intersection === this.props.intersection 
+		    && nextProps.color === this.props.color);
+	return !idem;
+    },
+    render: function() {
+	var pseudoStone = SVGoban.shapeStone(this.props.size, this.props.intersection, this.props.color);
+	return (
+		toElem(pseudoStone, this.props.onIntersectionClick)[0]
 	);
     }
 });
@@ -134,7 +184,8 @@ var Goban = React.createClass({
 		    <GridLayer size={this.props.size}/>
 		    <StarPointsLayer size={this.props.size}/>
 		    <LabelsLayer size={this.props.size}/>
-		    <StonesLayer size={this.props.size} set={this.props.stones} onIntersectionClick={this.props.onIntersectionClick}/>
+		    <CompositeStonesLayer size={this.props.size} set={this.props.stones} 
+	    onIntersectionClick={this.props.onIntersectionClick}/>
 		  </svg>
 		</div>
 	);
