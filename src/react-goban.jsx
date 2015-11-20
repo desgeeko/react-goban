@@ -51,6 +51,15 @@ var LabelsLayer = React.createClass({
     }
 });
 
+var BackgroundLayer = React.createClass({
+    render: function() {
+	var pseudoBackground = SVGoban.shapeBackground(this.props.noMargin);
+	return (
+		<g className="background_layer">{toElem(pseudoBackground)}</g>
+	);
+    }
+});
+
 var GridLayer = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
 	return (nextProps.size !== this.props.size);
@@ -181,13 +190,13 @@ var Goban = React.createClass({
 	};
     },
     render: function() {
-	var viewBox = SVGoban.shapeArea().join(" ");
+	var viewBox = SVGoban.shapeArea(this.props.hideBorder).join(" ");
 	return (
 		<div className="react-goban">
 		  <svg className="svgoban" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%"> 
 		    <Style theme={this.props.theme}/>
 		    <Definitions/>
-		    <rect className="wood" height="100%" width="100%" y="0" x="0" />
+		    <BackgroundLayer noMargin={this.props.noMargin}/>
 		    <GridLayer size={this.props.size}/>
 		    <StarPointsLayer size={this.props.size}/>
 		    <LabelsLayer size={this.props.size}/>
