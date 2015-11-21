@@ -1,6 +1,6 @@
 {
   "name": "react-goban",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A stateless React component displaying a Goban",
   "main": "index.js",
   "scripts": {

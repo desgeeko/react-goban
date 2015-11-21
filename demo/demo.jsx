@@ -5,7 +5,8 @@ var Goban = require('..').Goban;
 
 var DemoApp = React.createClass({
     getInitialState: function() {
-	return {position: {}, 
+	return {position: {},
+		markers: {},
 		theme: "classic", 
 		hideBorder: false,
 		noMargin: false,
@@ -27,21 +28,15 @@ var DemoApp = React.createClass({
 	var newMargin = (this.state.noMargin == false) ? true : false;
 	this.setState({noMargin: newMargin});
     },
-    handleClick1: function(event) {
-	var sample1 = {"P16": "black"};
-	this.setState({position: sample1});
-    },
     handleClick2: function(event) {
 	var sample2 = {"P16": "black", "Q4": "white"};
-	this.setState({position: sample2});
-    },
-    handleClick3: function(event) {
-	var sample3 = {"P16": "black", "Q4": "white", "D4": "black"};
-	this.setState({position: sample3});
+	var markers2 = {"Q4": "circle"};
+	this.setState({position: sample2, markers: markers2});
     },
     handleClick4: function(event) {
 	var sample4 = {"P16": "black", "Q4": "white", "D4": "black", "E16": "white"};
-	this.setState({position: sample4});
+	var markers4 = {"E16": "circle"};
+	this.setState({position: sample4, markers: markers4});
     },
     handleClickBW: function(event) {
 	var newColor = (this.state.nextToPlay == "black") ? "white" : "black";
@@ -62,9 +57,9 @@ var DemoApp = React.createClass({
 		    <button onClick={this.handleClickBorder}>border</button>
 		    <button onClick={this.handleClickBW}>nextToPlay (B/W hover)</button>
 		  </div>
-		  <Goban theme={this.state.theme} stones={this.state.position} 
+		  <Goban theme={this.state.theme} stones={this.state.position} markers={this.state.markers}
 	                 nextToPlay={this.state.nextToPlay} onIntersectionClick={this.handleIntersectionClick}
-	                 hideBorder={this.state.hideBorder} noMargin={this.state.noMargin}/>
+	                 hideBorder={this.state.hideBorder} noMargin={this.state.noMargin}/> 
 		</div>
 	);
     }

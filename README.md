@@ -22,7 +22,10 @@ Require it and use its `Goban` object:
 * `size` = a number between `9` and `19` (default)
 * `theme` = `"classic"` (default) or `"paper"`
 * `stones` = an object containing coordinates and colors as keys and values
+* `markers` = an object containing coordinates and types (for example "circle") as keys and values
 * `onIntersectionClick` = callback function from (statefull) parent Component
+* `hideBorder` = true or false (default)
+* `noMargin` = true or false (default)
 * `nextToPlay` = color of hover effet on placeholders
 
 ## Demo
@@ -33,5 +36,4 @@ You may `make demo` and browse the bundled app at `demo\index.html`
 
 This is a Work In Progress.
 * Add zoom
-* Add markers (last stone played,...)
 

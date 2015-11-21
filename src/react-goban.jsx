@@ -84,6 +84,14 @@ var StarPointsLayer = React.createClass({
     }
 });
 
+var MarkersLayer = React.createClass({
+    render: function() {
+	var pseudoMarkers = SVGoban.shapeMarkers(this.props.size, this.props.markers, this.props.positions);
+	return (
+		<g className="markers_layer">{toElem(pseudoMarkers)}</g>
+	);
+    }
+});
 
 /**
  * 1st approach: bulk rendering of all stones/placeholders
@@ -202,6 +210,7 @@ var Goban = React.createClass({
 		    <LabelsLayer size={this.props.size}/>
 		    <CompositeStonesLayer size={this.props.size} set={this.props.stones} 
 	               nextToPlay={this.props.nextToPlay} onIntersectionClick={this.props.onIntersectionClick}/>
+		    <MarkersLayer size={this.props.size} markers={this.props.markers} positions={this.props.stones}/>
 		  </svg>
 		</div>
 	);
