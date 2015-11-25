@@ -5,9 +5,9 @@ var Goban = require('..').Goban;
 
 var DemoApp = React.createClass({
     getInitialState: function() {
-	return {position: {},
-		markers: {},
-		theme: "classic", 
+	return {position: {"P16": "black"},
+		markers: {"P16": "circle"},
+		theme: "classic",  
 		hideBorder: false,
 		noMargin: false,
 		intersection: "none yet", 
@@ -28,15 +28,15 @@ var DemoApp = React.createClass({
 	var newMargin = (this.state.noMargin == false) ? true : false;
 	this.setState({noMargin: newMargin});
     },
-    handleClick2: function(event) {
-	var sample2 = {"P16": "black", "Q4": "white"};
-	var markers2 = {"Q4": "circle"};
-	this.setState({position: sample2, markers: markers2});
+    handleClickStones: function(event) {
+	var sample = [{"P16": "black"}, {"P16": "black", "Q4": "white"}];
+	var i = Object.keys(this.state.position).length === 1 ? 1 : 0;
+	this.setState({position: sample[i]});
     },
-    handleClick4: function(event) {
-	var sample4 = {"P16": "black", "Q4": "white", "D4": "black", "E16": "white"};
-	var markers4 = {"E16": "circle"};
-	this.setState({position: sample4, markers: markers4});
+    handleClickMarkers: function(event) {
+	var sample = [{"P16": "circle"}, {}];
+	var i = Object.keys(this.state.markers).length === 1 ? 1 : 0;
+	this.setState({markers: sample[i]});
     },
     handleClickBW: function(event) {
 	var newColor = (this.state.nextToPlay == "black") ? "white" : "black";
@@ -46,17 +46,24 @@ var DemoApp = React.createClass({
 	return (
 		<div>
 		  <div id="menu">
-		    <p>Last click received from callback: <strong>{this.state.intersection}</strong></p>
-		    <p>Init board content:</p>
-		    <button onClick={this.handleClick2}>2 stones</button>
-		    <button onClick={this.handleClick4}>4 stones</button>
+		    <h1>Demo</h1>
 		<br/>
-		    <p>Toggle properties of stateless Goban:</p>
-		    <button onClick={this.handleClickTheme}>theme</button>
-		    <button onClick={this.handleClickMargin}>margin</button>
-		    <button onClick={this.handleClickBorder}>border</button>
-		    <button onClick={this.handleClickBW}>nextToPlay (B/W hover)</button>
-		  </div>
+		    <p>Toggle properties of stateless Goban with simple test cases:</p>
+		<div id="result">
+		<p>&lt;Goban</p>
+		<ul>
+		<li><button onClick={this.handleClickTheme}>theme</button> = "{this.state.theme}"</li>
+		<li><button onClick={this.handleClickMargin}>noMargin</button> = {this.state.noMargin ? "true" : "false"}</li>
+		<li><button onClick={this.handleClickBorder}>hideBorder</button> = {this.state.hideBorder ? "true" : "false"}</li>
+		<li><button onClick={this.handleClickBW}>nextToPlay</button> = "{this.state.nextToPlay}"</li>
+		<li><button onClick={this.handleClickStones}>stones</button> = {JSON.stringify(this.state.position)} (Object)</li>
+		<li><button onClick={this.handleClickMarkers}>markers</button> = {JSON.stringify(this.state.markers)} (Object)</li>
+		</ul>
+		<p>/&gt;</p>
+	        </div>
+		<p>Last click received from callback: <strong>{this.state.intersection}</strong></p>
+		</div>
+
 		  <Goban theme={this.state.theme} stones={this.state.position} markers={this.state.markers}
 	                 nextToPlay={this.state.nextToPlay} onIntersectionClick={this.handleIntersectionClick}
 	                 hideBorder={this.state.hideBorder} noMargin={this.state.noMargin}/> 
@@ -64,7 +71,6 @@ var DemoApp = React.createClass({
 	);
     }
 });
-
 
 ReactDOM.render(
   <DemoApp />, document.getElementById('content')
