@@ -15,7 +15,7 @@ $(LIB_DIR)/react-goban.js: $(SRC_DIR)/react-goban.jsx
 	mkdir -p $(LIB_DIR)
 	$(BABEL) $< -o $@
 
-$(DEMO_DIR)/demo-bundle.js: $(DEMO_DIR)/demo.jsx $(SRC_DIR)/react-goban.jsx
+$(DEMO_DIR)/demo-bundle.js: $(DEMO_DIR)/demo.jsx
 	$(BROWSERIFY) -t babelify $< -o $@
 
 clean:
