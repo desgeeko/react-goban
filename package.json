@@ -1,6 +1,6 @@
 {
   "name": "react-goban",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A stateless React component displaying a Goban",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "svgoban": "^0.3.0"
+    "svgoban": "^0.4.0"
   },
   "devDependencies": {
     "babel": "^6.1.18",

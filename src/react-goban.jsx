@@ -41,10 +41,10 @@ function toElem(shapes, callback) {
 
 var LabelsLayer = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
-	return (nextProps.size !== this.props.size);
+	return ((nextProps.size !== this.props.size) || (nextProps.coordSystem !== this.props.coordSystem));
     },
     render: function() {
-	var pseudoLabels = SVGoban.shapeLabels(this.props.size);
+	var pseudoLabels = SVGoban.shapeLabels(this.props.size, this.props.coordSystem);
 	return (
 		<g className="labels_layer">{toElem(pseudoLabels)}</g>
 	);
@@ -118,18 +118,21 @@ var CompositeStonesLayer = React.createClass({
 	this.props.onIntersectionClick(intersection);
     },
     render: function() {
-	var i, j, skipI, hletter, vnumber, coord, color;
+	var i, j, skipI, hA1, vA1, haa, vaa, coordA1, coordaa, color;
 	var size = +this.props.size;
 	var items = [];
 
 	for (i = 1; i <= size; i++) {
 	    skipI = i >= 9 ? 1 : 0;
-	    hletter = String.fromCharCode(64 + i + skipI);
+	    hA1 = String.fromCharCode(64 + i + skipI);
+	    haa = String.fromCharCode(96 + i);
 	    for (j = 1; j <= size; j++) {
-		vnumber = j.toString();
-		coord = hletter + vnumber; 
-		color = this.props.set[coord] || "placeholder";
-		items.push(<Stone key={coord} size={this.props.size} intersection={coord} 
+		vA1 = j.toString();
+		vaa = String.fromCharCode(96 + size - j + 1);
+		coordA1 = hA1 + vA1;
+		coordaa = haa + vaa;
+		color = this.props.set[coordA1] || this.props.set[coordaa] || "placeholder";
+		items.push(<Stone key={coordA1} size={this.props.size} intersection={coordA1} 
 			   color={color} onIntersectionClick={this.handleClick} />);
 	    }
 	}
@@ -207,7 +210,7 @@ var Goban = React.createClass({
 		    <BackgroundLayer noMargin={this.props.noMargin}/>
 		    <GridLayer size={this.props.size}/>
 		    <StarPointsLayer size={this.props.size}/>
-		    <LabelsLayer size={this.props.size}/>
+		    <LabelsLayer size={this.props.size} coordSystem={this.props.coordSystem}/>
 		    <CompositeStonesLayer size={this.props.size} set={this.props.stones} 
 	               nextToPlay={this.props.nextToPlay} onIntersectionClick={this.props.onIntersectionClick}/>
 		    <MarkersLayer size={this.props.size} markers={this.props.markers} positions={this.props.stones}/>
