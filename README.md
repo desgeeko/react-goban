@@ -21,6 +21,7 @@ Require it and use its `Goban` object:
 ### Goban Attributes
 * `size` = a number between `9` and `19` (default)
 * `theme` = `"classic"` (default) or `"paper"`
+* `coordSystem` = `"A1"` (default) or `"aa"`
 * `stones` = an object containing coordinates and colors as keys and values
 * `markers` = an object containing coordinates and types (for example "circle") as keys and values
 * `onIntersectionClick` = callback function from (statefull) parent Component

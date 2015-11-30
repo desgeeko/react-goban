@@ -51,7 +51,7 @@ var DemoApp = React.createClass({
 	return (
 		<div>
 		  <div id="menu">
-		    <h1>react-goban demo</h1>
+		    <h1><a href="https://github.com/desgeeko/react-goban">react-goban</a> demo</h1>
 		<br/>
 		    <p>Toggle properties of stateless Goban with simple test cases:</p>
 		<div id="result">
