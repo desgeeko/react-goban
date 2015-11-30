@@ -64,10 +64,14 @@ var DemoApp = React.createClass({
 		<li><button onClick={this.handleClickBW}>nextToPlay</button> = "{this.state.nextToPlay}"</li>
 		<li><button onClick={this.handleClickStones}>stones</button> = {JSON.stringify(this.state.position)}</li>
 		<li><button onClick={this.handleClickMarkers}>markers</button> = {JSON.stringify(this.state.markers)}</li>
+		<li><button disabled>onIntersectionClick</button> = <em>callback</em></li>
 		</ul>
 		<p>/&gt;</p>
 	        </div>
+		<p>For a fully fonctional game it would be up to the parent component to implement state management (valid moves, captures,...) based on callback inputs and to pass new properties to the Goban component.</p>
 		<p>Last click received from callback: <strong>{this.state.intersection}</strong></p>
+		<br/>
+		<p><a href="https://github.com/desgeeko/react-goban">react-goban</a> SVG shapes are rendered by <a href="https://github.com/desgeeko/svgoban">svgoban</a>.</p>
 		</div>
 
 		  <Goban theme={this.state.theme} stones={this.state.position} markers={this.state.markers}
