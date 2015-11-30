@@ -4,6 +4,8 @@
 
 Its concern is the View: it implements neither Go rules nor game state.
 
+**Live demo at** [https://desgeeko.github.io/react-goban/](https://desgeeko.github.io/react-goban/)
+
 ![SVGoban demo](demo/demo.png)
 
 ## Usage
