@@ -28,15 +28,11 @@ Require it and use its `Goban` object:
 * `markers` = an object containing coordinates and types (for example "circle") as keys and values
 * `onIntersectionClick` = callback function from (statefull) parent Component
 * `hideBorder` = true or false (default)
+* `zoom` = an object describing the region to zoom in, or null (default)
 * `noMargin` = true or false (default)
 * `nextToPlay` = color of hover effet on placeholders
 
 ## Demo
 
 You may `make demo` and browse the bundled app at `demo\index.html`
-
-## Roadmap
-
-This is a Work In Progress.
-* Add zoom
 
