@@ -27,16 +27,16 @@
   },
   "homepage": "https://github.com/desgeeko/react-goban#readme",
   "dependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
     "svgoban": "^0.4.0"
   },
   "devDependencies": {
-    "babel": "^6.1.18",
-    "babel-cli": "^6.2.0",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.1.18",
-    "babelify": "^7.2.0",
-    "browserify": "^12.0.1"
+    "babel": "^6.5.2",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0"
   }
 }
