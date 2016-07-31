@@ -178,14 +178,14 @@ var Definitions = React.createClass({
 	var w = SVGoban.defineRadialColors("white");
 	return (
 		<defs>
-		  <radialgradient id={"blackgrad"} {...b.gradient}>
+		  <radialGradient id={"blackgrad"} {...b.gradient}>
 		    <stop offset="0%" style={{"stop-color": b.a, "stop-opacity":"1"}}/>
 		    <stop offset="100%" style={{"stop-color": b.z, "stop-opacity":"1"}}/>
-		  </radialgradient>
-		  <radialgradient id={"whitegrad"} {...w.gradient}>
+		  </radialGradient>
+		  <radialGradient id={"whitegrad"} {...w.gradient}>
 		    <stop offset="0%" style={{"stop-color": w.a, "stop-opacity":"1"}}/>
 		    <stop offset="100%" style={{"stop-color": w.z, "stop-opacity":"1"}}/>
-		  </radialgradient>
+		  </radialGradient>
 		</defs>
 	);
     }
