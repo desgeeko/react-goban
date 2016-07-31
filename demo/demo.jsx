@@ -10,6 +10,7 @@ var DemoApp = React.createClass({
 		theme: "classic",
 		coordSystem: "A1",
 		hideBorder: false,
+		zoom: null,
 		noMargin: false,
 		intersection: "none yet", 
 		nextToPlay: "black"};
@@ -28,6 +29,10 @@ var DemoApp = React.createClass({
     handleClickBorder: function(event) {
 	var newBorder = (this.state.hideBorder == false) ? true : false;
 	this.setState({hideBorder: newBorder});
+    },
+    handleClickZoom: function(event) {
+	var newZoom = (this.state.zoom == null) ? {"mode": "zone", "region": "NE"} : null;
+	this.setState({zoom: newZoom});
     },
     handleClickMargin: function(event) {
 	var newMargin = (this.state.noMargin == false) ? true : false;
@@ -60,6 +65,7 @@ var DemoApp = React.createClass({
 		<li><button onClick={this.handleClickTheme}>theme</button> = "{this.state.theme}"</li>
 		<li><button onClick={this.handleClickMargin}>noMargin</button> = {this.state.noMargin ? "true" : "false"}</li>
 		<li><button onClick={this.handleClickBorder}>hideBorder</button> = {this.state.hideBorder ? "true" : "false"}</li>
+		<li><button onClick={this.handleClickZoom}>zoom</button> = {this.state.zoom ? JSON.stringify(this.state.zoom) : "null"}</li>
 		<li><button onClick={this.handleClickCoordSystem}>coordSystem</button> = "{this.state.coordSystem}"</li>
 		<li><button onClick={this.handleClickBW}>nextToPlay</button> = "{this.state.nextToPlay}"</li>
 		<li><button onClick={this.handleClickStones}>stones</button> = {JSON.stringify(this.state.position)}</li>
@@ -70,13 +76,12 @@ var DemoApp = React.createClass({
 	        </div>
 		<p>For a fully fonctional game it would be up to the parent component to implement state management (valid moves, captures,...) based on callback inputs and to pass new properties to the Goban component.</p>
 		<p>Last click received from callback: <strong>{this.state.intersection}</strong></p>
-		<br/>
 		<p><a href="https://github.com/desgeeko/react-goban">react-goban</a> SVG shapes are rendered by <a href="https://github.com/desgeeko/svgoban">svgoban</a>.</p>
 		</div>
 
 		  <Goban theme={this.state.theme} stones={this.state.position} markers={this.state.markers}
 	                 nextToPlay={this.state.nextToPlay} onIntersectionClick={this.handleIntersectionClick}
-	                 hideBorder={this.state.hideBorder} noMargin={this.state.noMargin}
+	                 hideBorder={this.state.hideBorder} zoom={this.state.zoom} noMargin={this.state.noMargin}
 	                 coordSystem={this.state.coordSystem} /> 
 		</div>
 	);

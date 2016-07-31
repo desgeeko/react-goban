@@ -191,8 +191,6 @@ var Definitions = React.createClass({
     }
 });
 
-/** @todo Add property to handle SVG className (next color to play) */
-
 var Goban = React.createClass({
     getDefaultProps: function() {
 	return {
@@ -201,7 +199,7 @@ var Goban = React.createClass({
 	};
     },
     render: function() {
-	var viewBox = SVGoban.shapeArea(this.props.hideBorder).join(" ");
+	var viewBox = SVGoban.shapeArea(this.props.hideBorder, this.props.zoom, this.props.size).join(" ");
 	return (
 		<div className="react-goban">
 		  <svg className="svgoban" viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%"> 
